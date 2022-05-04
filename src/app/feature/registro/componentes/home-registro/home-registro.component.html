@@ -1,0 +1,21 @@
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>My Cash</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<app-listar-registros *ngIf="!form; else formTemplate"></app-listar-registros>
+<ng-template #formTemplate>
+    <app-formulario-registro (registro) = "getRegistro($event)" (cancel)="form=false"></app-formulario-registro>
+</ng-template>
+<div class="add" *ngIf="!form">
+    <button mat-fab color="primary" (click)="form = true">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<div class="back" *ngIf="form">
+    <button mat-fab color="accent" (click)="form = false">
+        <mat-icon>chevron_left</mat-icon>
+    </button>
+</div>

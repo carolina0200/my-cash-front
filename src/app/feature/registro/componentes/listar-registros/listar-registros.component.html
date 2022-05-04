@@ -1,0 +1,23 @@
+<mat-list>
+    <h2 mat-subheader>Registros</h2>
+    <mat-list-item *ngFor="let registro of registros">
+       <mat-icon mat-list-icon>{{registro.icono}}</mat-icon>
+       <h4 mat-line>{{registro.descripcion}}</h4>
+       <mat-chip-list>
+          <mat-chip class="chip {{registro.tipo == 'IN' ? 'income' : 'outcome'}}">{{registro.cuanto | currency:'JPY':''}}  $</mat-chip>
+       </mat-chip-list>
+       <p>{{registro.cuando  | date: "MMM dd"}}</p>
+       <mat-divider [inset]="true"></mat-divider>
+    </mat-list-item>
+ </mat-list>
+
+<mat-list>
+   <mat-list-item>
+      <mat-chip-list>
+         <mat-chip class="chip income">{{data.ingresos | currency:'JPY':''}}  $</mat-chip> -
+         <mat-chip class="chip outcome">{{data.egresos | currency:'JPY':''}}  $</mat-chip> =
+         <mat-chip class="chip {{data.total > 0 ? 'income' : 'outcome'}}">{{data.total | currency:'JPY':''}}  $</mat-chip>
+      </mat-chip-list>
+   </mat-list-item>
+</mat-list>
+

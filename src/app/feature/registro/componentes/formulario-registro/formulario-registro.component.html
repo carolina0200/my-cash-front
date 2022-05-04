@@ -1,0 +1,61 @@
+<form class="form" *ngIf="registroForm" [formGroup]="registroForm">
+  <mat-form-field appearance="fill">
+		<mat-label>Tipo de ingreso</mat-label>
+		<mat-select formControlName="tipo">
+			<mat-option value="IN">Ingreso</mat-option>
+			<mat-option value="EG" selected>Egreso</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<mat-divider [inset]="true"></mat-divider>
+	<mat-form-field appearance="fill">
+		<mat-label>Concepto</mat-label>
+		<mat-select [disabled]="registroForm.get('tipo')?.value == 'IN'" formControlName="concepto">
+			<mat-option value="OB">obligatorio</mat-option>
+			<mat-option value="OT" selected>Otros</mat-option>
+		</mat-select>
+	</mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Cuanto</mat-label>
+    <input type="number" matInput formControlName="cuanto" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="registroForm.controls['cuanto'].hasError('required')">
+    	Cuanto es <strong>obligatorio</strong>
+    </mat-error>
+  </mat-form-field>
+	<mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Cuando</mat-label>
+    <input type="date" matInput formControlName="cuando" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="registroForm.controls['cuando'].hasError('required')">
+    	Cuando es <strong>obligatorio</strong>
+    </mat-error>
+  </mat-form-field>
+	<mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Descripcion</mat-label>
+    <input type="text" matInput formControlName="descripcion" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="registroForm.controls['descripcion'].hasError('required')">
+    	Descripcion es <strong>obligatorio</strong>
+    </mat-error>
+  </mat-form-field>
+	<mat-form-field>
+		<mat-select placeholder="Tipo de gasto *" formControlName="icono">
+			<mat-option value="home">
+				<mat-icon>home</mat-icon>Hogar
+			</mat-option>
+			<mat-option value="directions_car">
+				<mat-icon>directions_car</mat-icon>Transporte
+			</mat-option>
+			<mat-option value="fastfood">
+				<mat-icon>fastfood</mat-icon>Alimentación
+			</mat-option>
+			<mat-option value="star">
+				<mat-icon>star</mat-icon>Entretenimiento
+			</mat-option>
+			<mat-option value="monetization_on">
+				<mat-icon>monetization_on</mat-icon>Ingreso
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+  <br><br>
+	<button mat-raised-button (click)="finish()"  class="demo-button" [disabled]="!registroForm.valid">
+		Ingresar registro
+	</button>
+</form>
