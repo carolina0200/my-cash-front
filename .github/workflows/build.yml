@@ -23,5 +23,5 @@ jobs:
         run: |
           npm install
           npm run-script build
-      - name: Test
-        run: npm run-script test
+          npm run-script lint
+          npm run-script test

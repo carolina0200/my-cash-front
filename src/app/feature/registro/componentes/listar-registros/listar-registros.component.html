@@ -4,7 +4,7 @@
        <mat-icon mat-list-icon>{{registro.icono}}</mat-icon>
        <h4 mat-line>{{registro.descripcion}}</h4>
        <mat-chip-list>
-          <mat-chip class="chip {{registro.tipo == 'IN' ? 'income' : 'outcome'}}">{{registro.cuanto | currency:'JPY':''}}  $</mat-chip>
+          <mat-chip class="chip {{registro.tipo === 'IN' ? 'income' : 'outcome'}}">{{registro.cuanto | currency:'JPY':''}}  $</mat-chip>
        </mat-chip-list>
        <p>{{registro.cuando  | date: "MMM dd"}}</p>
        <mat-divider [inset]="true"></mat-divider>

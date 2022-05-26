@@ -9,7 +9,7 @@
 	<mat-divider [inset]="true"></mat-divider>
 	<mat-form-field appearance="fill">
 		<mat-label>Concepto</mat-label>
-		<mat-select [disabled]="registroForm.get('tipo')?.value == 'IN'" formControlName="concepto">
+		<mat-select [disabled]="registroForm.get('tipo')?.value === 'IN'" formControlName="concepto">
 			<mat-option value="OB">obligatorio</mat-option>
 			<mat-option value="OT" selected>Otros</mat-option>
 		</mat-select>
