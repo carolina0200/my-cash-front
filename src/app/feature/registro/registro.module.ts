@@ -5,7 +5,7 @@ import { RegistroRoutingModule } from './registro-routing.module';
 import { HomeRegistroComponent } from './componentes/home-registro/home-registro.component';
 import { ListarRegistrosComponent } from './componentes/listar-registros/listar-registros.component';
 import { FormularioRegistroComponent } from './componentes/formulario-registro/formulario-registro.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegistroService } from './shared/services/registro.service';
 import { MaterialExampleModule } from 'src/app/material.module';
 import { MatChipsModule } from '@angular/material/chips';
@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { JwtInterceptor } from 'src/app/core/interceptos/jwt.interceptor';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeRegistroComponent
   ],
   providers: [
-    RegistroService
+    RegistroService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [HomeRegistroComponent]
 })

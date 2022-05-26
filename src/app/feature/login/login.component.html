@@ -1,0 +1,27 @@
+<div class="img">
+	<img src="/assets/Logo.png" width="280px">
+</div>
+<form class="form" *ngIf="loginForm" [formGroup]="loginForm">
+	<mat-form-field class="example-full-width" appearance="fill">
+		<mat-label>Usuario</mat-label>
+		<input type="text" matInput formControlName="usuario" [errorStateMatcher]="matcher">
+		<mat-error *ngIf="loginForm.controls['usuario'].hasError('required')">
+			Usuario es <strong>obligatorio</strong>
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width" appearance="fill">
+		<mat-label>Contraseña</mat-label>
+		<input type="password" matInput formControlName="clave" [errorStateMatcher]="matcher">
+		<mat-error *ngIf="loginForm.controls['clave'].hasError('required')">
+			La contraseña es <strong>obligatoria</strong>
+		</mat-error>
+	</mat-form-field>
+
+
+	<button mat-stroked-button color="accent" (click)="finish()" class="demo-button" [disabled]="!loginForm.valid">
+		Ingresar
+	</button>
+
+	<button mat-button color="primary" routerLink="/registro">Registrarme</button>
+</form>

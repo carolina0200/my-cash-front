@@ -16,7 +16,7 @@
 	</mat-form-field>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Cuanto</mat-label>
-    <input type="number" matInput formControlName="cuanto" [errorStateMatcher]="matcher">
+    <input type="number" matInput formControlName="cuanto">
     <mat-error *ngIf="registroForm.controls['cuanto'].hasError('required')">
     	Cuanto es <strong>obligatorio</strong>
     </mat-error>

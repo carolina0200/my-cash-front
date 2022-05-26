@@ -30,8 +30,8 @@ export class FormularioRegistroComponent implements OnInit {
     this.registroForm = this.formBuilder.group({
       tipo: ['EG', [Validators.required]],
       concepto: ['OT', [Validators.required]],
-      cuanto: ['', [Validators.required, Validators.min(0)]],
-      cuando: ['', [Validators.required]],
+      cuanto: ['', [ Validators.min(0)]],
+      cuando: ['', []],
       descripcion: ['', [Validators.required, Validators.maxLength(100), Validators.minLength(4)]],
       icono: ['monetization_on']
     });

@@ -1,0 +1,34 @@
+<div class="img">
+	<img src="/assets/Logo.png" width="200px">
+</div>
+<h2>Unete a esta gran comunidad!</h2>
+<form class="form" *ngIf="signUpForm" [formGroup]="signUpForm">
+	<mat-form-field class="example-full-width" appearance="fill">
+		<mat-label>Usuario</mat-label>
+		<input type="text" matInput formControlName="usuario" [errorStateMatcher]="matcher">
+		<mat-error *ngIf="signUpForm.controls['usuario'].hasError('required')">
+			Usuario es <strong>obligatorio</strong>
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width" appearance="fill">
+		<mat-label>Contraseña</mat-label>
+		<input type="password" matInput formControlName="clave" [errorStateMatcher]="matcher">
+		<mat-error *ngIf="signUpForm.controls['clave'].hasError('required')">
+			La contraseña es <strong>obligatoria</strong>
+		</mat-error>
+	</mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+		<mat-label>Confirmar Contraseña</mat-label>
+		<input type="password" matInput formControlName="claveConfirmada" [errorStateMatcher]="matcher">
+		<mat-error *ngIf="signUpForm.controls['claveConfirmada'].hasError('required')">
+			Confirmar la contraseña es <strong>obligatorio</strong>
+		</mat-error>
+	</mat-form-field>
+
+    <br><br>
+	<button mat-raised-button (click)="finish()" class="demo-button" [disabled]="!signUpForm.valid">
+		Enviar
+	</button>
+</form>
