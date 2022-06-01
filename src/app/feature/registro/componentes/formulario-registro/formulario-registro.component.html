@@ -23,7 +23,7 @@
   </mat-form-field>
 	<mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Cuando</mat-label>
-    <input type="date" matInput formControlName="cuando" [errorStateMatcher]="matcher">
+    <input id="date" type="date" matInput formControlName="cuando" [errorStateMatcher]="matcher">
     <mat-error *ngIf="registroForm.controls['cuando'].hasError('required')">
     	Cuando es <strong>obligatorio</strong>
     </mat-error>
@@ -37,6 +37,9 @@
   </mat-form-field>
 	<mat-form-field>
 		<mat-select placeholder="Tipo de gasto *" formControlName="icono">
+			<mat-select-trigger>
+				<mat-icon class="icon-smaller">{{registroForm.controls['icono'].value}}</mat-icon>  {{nombreIcono}}
+			</mat-select-trigger>
 			<mat-option value="home">
 				<mat-icon>home</mat-icon>Hogar
 			</mat-option>

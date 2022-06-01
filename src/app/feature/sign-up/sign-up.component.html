@@ -17,6 +17,9 @@
 		<mat-error *ngIf="signUpForm.controls['clave'].hasError('required')">
 			La contraseña es <strong>obligatoria</strong>
 		</mat-error>
+		<mat-error *ngIf="signUpForm.controls['clave'].hasError('minlength')">
+			La contraseña debe ser de <strong>minimo 6 caracteres</strong>
+		</mat-error>
 	</mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
@@ -24,6 +27,9 @@
 		<input type="password" matInput formControlName="claveConfirmada" [errorStateMatcher]="matcher">
 		<mat-error *ngIf="signUpForm.controls['claveConfirmada'].hasError('required')">
 			Confirmar la contraseña es <strong>obligatorio</strong>
+		</mat-error>
+		<mat-error *ngIf="signUpForm.controls['claveConfirmada'].hasError('mustMatch')">
+			Las contraseñas no <strong>coinciden</strong>
 		</mat-error>
 	</mat-form-field>
 

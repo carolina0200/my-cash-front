@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { Usuario } from 'src/app/shared/model/usuario';
@@ -21,8 +21,12 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group({
       usuario: [undefined, [Validators.required]],
-      clave: [undefined, [Validators.required]],
+      clave: [undefined, [Validators.required, Validators.minLength(6)]],
       claveConfirmada: [undefined, [Validators.required]]
+    },
+    {
+      validators: [this.mustMatch()],
+      updateOn: 'blur',
     });
   }
 
@@ -32,6 +36,17 @@ export class SignUpComponent implements OnInit {
       await firstValueFrom(this.signUpService.singUp(usuario));
       this.router.navigateByUrl("/login");
     }
+  }
+
+  mustMatch() {
+    return (formGroup: FormGroup): ValidationErrors |  null => {
+      if (formGroup.get('clave')?.value !== formGroup.get('claveConfirmada')?.value) {
+        formGroup.get('claveConfirmada')?.setErrors({ mustMatch: true });
+      } else {
+        formGroup.get('claveConfirmada')?.setErrors(null);
+      }
+      return null;
+    };
   }
 
 }

@@ -25,19 +25,33 @@ export class FormularioRegistroComponent implements OnInit {
   @Output() cancelForm = new EventEmitter();
   matcher = new MyErrorStateMatcher();
 
+  iconos = {
+ 
+    'home': 'Hogar',
+    'directions_car': 'Transporte',
+    'fastfood': 'Alimentación',
+    'star': 'Entretenimiento',
+    'monetization_on': 'Ingreso'
+  }
+
+  get nombreIcono() {
+    return this.iconos[this.registroForm.value.icono as keyof typeof this.iconos];
+  }
+
   ngOnInit(): void {
 
     this.registroForm = this.formBuilder.group({
       tipo: ['EG', [Validators.required]],
       concepto: ['OT', [Validators.required]],
-      cuanto: ['', [ Validators.min(0)]],
-      cuando: ['', []],
+      cuanto: ['', [Validators.required, Validators.min(0)]],
+      cuando: ['', [Validators.required]],
       descripcion: ['', [Validators.required, Validators.maxLength(100), Validators.minLength(4)]],
-      icono: ['monetization_on']
+      icono: [undefined]
     });
   }
 
   finish() {
+    console.log(this.registroForm.value)
     if(this.registroForm.valid) {
       const registro: Registro = {... this.registroForm.value};
       registro.cuando += "T20:00:00"
